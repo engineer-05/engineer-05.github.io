@@ -219,14 +219,15 @@ a { color: inherit; text-decoration: none; }
     display: block;
     padding: 1.2rem 1rem;
     border-radius: var(--radius);
-    transition: background 0.15s;
-    border: 1px solid transparent;
+    transition: background 0.15s, box-shadow 0.15s;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
 }
 
 .post-item:hover {
-    background: var(--surface);
-    border-color: var(--border);
-    box-shadow: var(--shadow);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-1px);
 }
 
 .post-title {
