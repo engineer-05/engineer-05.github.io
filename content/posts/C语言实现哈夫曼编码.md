@@ -396,4 +396,4 @@ while (fread(&ch, 1, 1, fpIn) > 0) {
 
 压缩的代价是额外的 1028 字节头部和两次文件遍历，换来的收益是重复字符越多、压缩效果越好。理解这个 trade-off，也就理解了哈夫曼编码为什么至今仍被广泛应用于各种压缩系统（如 JPEG、DEFLATE）中。
 
-完整代码见 GitHub 仓库中的 `huffman/` 目录。
+完整源代码见 GitHub 仓库：[engineer-05/huffman](https://github.com/engineer-05/huffman)。
