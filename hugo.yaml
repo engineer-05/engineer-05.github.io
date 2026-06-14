@@ -1,0 +1,31 @@
+# ============================================================
+# Hugo 博客配置
+# 域名: lzxlog.xyz
+# ============================================================
+baseURL: https://lzxlog.xyz/
+locale: zh-CN
+title: patience
+
+# 分页
+paginate: 10
+summaryLength: 70
+
+# 站点参数
+params:
+  author: patience
+  bio: 记录学习与生活。
+  github: https://github.com/engineer-05
+  email: ""
+
+# 分类法
+taxonomies:
+  category: categories
+  tag: tags
+
+# Markdown 渲染
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+  highlight:
+    noClasses: false

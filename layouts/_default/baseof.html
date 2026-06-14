@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} — {{ .Site.Title }}{{ end }}</title>
+    {{ with .Site.Params.description }}<meta name="description" content="{{ . }}">{{ end }}
+    <link rel="alternate" type="application/rss+xml" href="{{ .Site.BaseURL }}index.xml" title="{{ .Site.Title }}">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230f172a' stroke-width='1.5'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M12 6v6l4 2'/%3E%3C/svg%3E">
+    {{ $css := resources.Get "css/style.css" }}
+    {{ if $css }}
+    {{ $style := $css | resources.Minify | resources.Fingerprint }}
+    <link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}">
+    {{ end }}
+</head>
+<body>
+    <div class="app-wrapper">
+        <!-- ========= 左侧栏 ========= -->
+        <aside class="sidebar">
+            <!-- 实时时钟 -->
+            <div class="clock">
+                <div class="clock-time" id="clock-time">00:00:00</div>
+                <div class="clock-date" id="clock-date">----.--.--</div>
+            </div>
+
+            <!-- 头像 + 个人信息 -->
+            <div class="profile">
+                <div class="avatar-wrap">
+                    <img src="/头像.jpg" alt="{{ .Site.Params.author }}" class="avatar" onerror="this.style.display='none'">
+                </div>
+                <h1 class="author-name">{{ .Site.Params.author }}</h1>
+                <p class="author-bio">{{ .Site.Params.bio }}</p>
+            </div>
+
+            <!-- 社交链接 -->
+            <div class="social-links">
+                {{ with .Site.Params.github }}
+                <a href="{{ . }}" target="_blank" class="social-link" rel="noopener">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                    </svg>
+                    GitHub
+                </a>
+                {{ end }}
+                {{ with .Site.Params.email }}
+                <a href="mailto:{{ . }}" class="social-link">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                        <polyline points="22,6 12,13 2,6"/>
+                    </svg>
+                    Email
+                </a>
+                {{ end }}
+            </div>
+        </aside>
+
+        <!-- ========= 右侧主内容 ========= -->
+        <main class="main-content">
+            {{ block "main" . }}{{ end }}
+        </main>
+    </div>
+
+    {{ $js := resources.Get "js/main.js" }}
+    {{ if $js }}
+    {{ $script := $js | resources.Minify | resources.Fingerprint }}
+    <script src="{{ $script.RelPermalink }}" integrity="{{ $script.Data.Integrity }}" defer></script>
+    {{ end }}
+</body>
+</html>
