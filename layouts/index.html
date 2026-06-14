@@ -9,7 +9,7 @@
             <!-- 文章列表 -->
             <div class="post-list" id="post-list">
                 {{ range where .Site.RegularPages "Type" "posts" }}
-                <a href="{{ .RelPermalink }}" class="post-item" data-categories="{{ range .Params.categories }}{{ . | urlize }}{{ end }}">
+                <a href="{{ .RelPermalink }}" class="post-item" data-categories="{{ range .Params.categories }}{{ . }}{{ end }}">
                     <h3 class="post-title">{{ .Title }}</h3>
                     {{ with .Summary }}
                     <p class="post-excerpt">{{ . | truncate 120 }}</p>
