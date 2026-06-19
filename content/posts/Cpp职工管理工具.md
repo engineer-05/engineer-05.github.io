@@ -4,6 +4,8 @@ draft: false
 title: 'C++职工管理工具——多态、二级指针与文件持久化'
 categories: ['学习记录']
 tags: ['C++', '面向对象', '多态', '文件流', '职工管理']
+aliases:
+  - /posts/cpp职工管理系统/
 ---
 
 ## 前言
